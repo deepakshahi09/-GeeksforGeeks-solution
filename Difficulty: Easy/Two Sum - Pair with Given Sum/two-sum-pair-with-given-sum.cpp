@@ -8,13 +8,13 @@ using namespace std;
 class Solution {
   public:
     bool twoSum(vector<int>& arr, int target) {
-        
         sort(arr.begin(),arr.end());
-      
+        
         int st = 0;
         int end = arr.size()-1;
         
         while(st<end){
+            
             if(arr[st]+arr[end]==target){
                 return true;
             }
@@ -24,9 +24,12 @@ class Solution {
             else{
                 st++;
             }
+           
+            
         }
         return false;
-      
+        
+        // code here,arr.
     }
 };
 
