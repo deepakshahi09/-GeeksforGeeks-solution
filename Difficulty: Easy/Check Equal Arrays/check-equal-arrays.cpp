@@ -1,23 +1,18 @@
-// User function template for C++
-
 class Solution {
   public:
-    // Function to check if two arrays are equal or not.
     bool checkEqual(vector<int>& a, vector<int>& b) {
         if(a.size() != b.size()){
             return false;
         }
-        unordered_map<int,int>freq;
-        for(int val: a){
-            freq[val]++;
+        unordered_map<int, int>set;
+        for(int i : a){
+            set[i]++;
         }
-        for(int val : b){
-            if(freq[val] == 0){
+        for(int i: b){
+            if(set.find(i) == set.end() || set[i]==0){
                 return false;
             }
-            else{
-                freq[val]--;
-            }
+            set[i]--;
         }
         return true;
         // code here
