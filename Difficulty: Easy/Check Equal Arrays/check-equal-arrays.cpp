@@ -1,11 +1,12 @@
 class Solution {
   public:
     bool checkEqual(vector<int>& a, vector<int>& b) {
+        // code here
         if(a.size() != b.size()){
             return false;
         }
         unordered_map<int, int>set;
-        for(int i : a){
+        for(int i: a){
             set[i]++;
         }
         for(int i: b){
@@ -15,7 +16,5 @@ class Solution {
             set[i]--;
         }
         return true;
-        // code here
-        
     }
 };
