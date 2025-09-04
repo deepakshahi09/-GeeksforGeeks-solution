@@ -5,9 +5,10 @@ class Solution {
         // code here
         int mn = INT_MAX;
         int mx = INT_MIN;
-        for(int n: arr){
-            mx = max(mx,n);
-            mn = min(mn,n);
+        
+        for(int i: arr){
+            mn = min(i,mn);
+            mx = max(i,mx);
         }
         return {mn,mx};
     }
