@@ -1,28 +1,33 @@
+/* struct Node {
+  int data;
+  struct Node *next;
+  Node(int x) {
+    data = x;
+    next = NULL;
+  }
+};*/
+
 class Solution {
   public:
-    int getKthFromLast(Node *head, int k) {
-        int tc = 0;
+    int getKthFromLast(Node* head, int k) {
+        int size = 0;
         Node* temp = head;
-
-        // Count total nodes
-        while (temp) {
-            tc++;
+        while(temp){
+            size++;
             temp = temp->next;
         }
-
-        // Invalid k check
-        if (k > tc || k <= 0) {
+        if(k > size){
             return -1;
         }
-
+        int rev = size - k;
         temp = head;
-        int pos = tc - k;
-
-        // Move to (tc - k)th node
-        while (pos--) {
+        while(rev--){
             temp = temp->next;
+           
         }
-
         return temp->data;
+        
+        // code here
+        
     }
 };
