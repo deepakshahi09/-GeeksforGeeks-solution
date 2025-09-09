@@ -18,19 +18,18 @@ struct node
 class Solution {
   public:
     int GetNth(Node *head, int index) {
-        Node* temp = head;
+        // Code Here
         int c = 1;
+        Node* temp = head;
         while(temp){
-            if(c==index){
+            if(c == index){
                 return temp->data;
             }
-            c++;
-            temp = temp->next;
-            
+            else{
+                c++;
+                temp = temp->next;
+            }
         }
         return -1;
-        
-        // Code Here
-        
     }
 };
