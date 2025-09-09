@@ -1,42 +1,35 @@
-/* Link list Node
-struct Node
-{
+/*
+class Node {
+public:
     int data;
-    struct Node* next;
+    Node* next;
 
-    Node(int x){
-        data = x;
-        next = NULL;
+    Node(int data) {
+        this->data = data;
+        this->next = nullptr;
     }
 };
 */
 class Solution {
   public:
-    /* Function to delete a node from a linked list */
     Node* deleteNode(Node* head, int x) {
         // code here
-        if(head==NULL){
-            return NULL;
-        }
         if(x==1){
             Node* temp = head;
             head = head->next;
             delete temp;
             return head;
         }
-        int c = 0;
-        Node* pre = NULL;
-        Node* curr = head;
-        while(curr && c < x-1){
-            c++;
-            pre = curr;
-            curr = curr->next;
+        int curr = 1;
+        Node* temp = head;
+        while(curr != x-1){
+            temp = temp->next;
+            curr++;
         }
-        if(curr==NULL){
-            return head;
-        }
-        pre->next = curr->next;
-        delete curr;
+        Node* curr_node = temp->next;
+        temp->next = temp->next->next;
+        delete curr_node;
         return head;
+        
     }
 };
