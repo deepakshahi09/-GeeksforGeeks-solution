@@ -1,36 +1,53 @@
+/* Link list Node
+
+struct Node
+{
+    int data;
+    struct Node* next;
+
+    Node(int x){
+        data = x;
+        next = NULL;
+    }
+
+};
+*/
+
+/*You are required to complete this method*/
+
+/* Function to get the middle of the linked list*/
+/*K will always be in range */
 class Solution {
   public:
     Node* deleteK(Node* head, int k) {
-        if (head == NULL || k == 0) return head;
-
-        if (k == 1) {
-            // If k == 1, delete all nodes
-            while (head != NULL) {
-                Node* temp = head;
-                head = head->next;
-                delete temp;
-            }
-            return NULL;
-        }
-
-        Node* curr = head;
-        Node* prev = NULL;
-        int count = 1;
-
-        while (curr != NULL) {
-            if (count % k == 0) {
-                // Delete current node
-                Node* temp = curr;
-                prev->next = curr->next;
-                curr = curr->next;
-                delete temp;
-            } else {
-                prev = curr;
-                curr = curr->next;
-            }
-            count++;
-        }
-
+        // code here
+        if (head == nullptr || k <= 0) 
         return head;
+    Node* curr = head;
+    Node* prev = nullptr;
+    // Initialize counter to track node positions
+    int count = 0;
+    // Traverse the linked list
+    while (curr != nullptr) {
+        count++;
+        // If count is a multiple of k, remove current node
+        if (count % k == 0) {
+            // skip the current node
+            if (prev != nullptr) {
+                prev->next = curr->next;
+            } 
+            else {
+              
+                head = curr->next;
+            }
+        } 
+        else {
+            // Update previous node pointer only if
+            // we do not remove the node
+            prev = curr;
+        }
+        curr = curr->next;
+    }
+    return head;
     }
 };
