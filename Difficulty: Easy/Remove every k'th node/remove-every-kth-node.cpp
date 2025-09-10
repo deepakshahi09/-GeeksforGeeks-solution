@@ -20,34 +20,48 @@ struct Node
 class Solution {
   public:
     Node* deleteK(Node* head, int k) {
-        // code here
-        if (head == nullptr || k <= 0) 
-        return head;
-    Node* curr = head;
-    Node* prev = nullptr;
-    // Initialize counter to track node positions
-    int count = 0;
-    // Traverse the linked list
-    while (curr != nullptr) {
-        count++;
-        // If count is a multiple of k, remove current node
-        if (count % k == 0) {
-            // skip the current node
-            if (prev != nullptr) {
-                prev->next = curr->next;
-            } 
-            else {
-              
-                head = curr->next;
-            }
-        } 
-        else {
-            // Update previous node pointer only if
-            // we do not remove the node
-            prev = curr;
+        if(k==1){
+            return NULL;
         }
-        curr = curr->next;
-    }
-    return head;
+        Node* curr = head;
+        Node* prev = NULL;
+        int count = 1;
+        
+        while(curr){
+            if(k==count){
+                prev->next = curr->next;
+                delete curr;
+                curr = prev->next;
+                count = 1;
+            }
+            else{
+                prev = curr;
+                curr = curr->next;
+                count++;
+            }
+        }
+        return head;
     }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
