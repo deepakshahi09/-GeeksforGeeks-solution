@@ -18,7 +18,7 @@ class Solution {
   public:
     struct Node* makeUnion(struct Node* head1, struct Node* head2) {
         // code here
-        unordered_set<int>set;
+        set<int>set;
         Node* temp1 = head1;
         while(temp1){
             set.insert(temp1->data);
@@ -32,10 +32,10 @@ class Solution {
         Node* dummy = new Node(0);
         Node* tail = dummy;
         
-        vector<int>ans(set.begin(),set.end());
-        sort(ans.begin(),ans.end());
+        // vector<int>ans(set.begin(),set.end());
+        // sort(ans.begin(),ans.end());
         
-        for(int i : ans){
+        for(int i : set){
             tail->next = new Node(i);
             tail = tail->next;
         }
