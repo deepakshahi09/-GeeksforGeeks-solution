@@ -3,7 +3,7 @@ class Solution {
     vector<int> nextGreater(vector<int> &arr) {
         int n = arr.size();
         vector<int> res(n, -1);
-        stack<int> st; // to store indices
+        stack<int> st; 
 
         // Traverse the array twice to simulate circular behavior
         for (int i = 0; i < 2 * n; i++) {
