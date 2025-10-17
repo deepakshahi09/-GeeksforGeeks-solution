@@ -1,96 +1,54 @@
-//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
-struct QueueNode {
-    int data;
-    QueueNode *next;
-};
+class myQueue {
+public:
+    int *arr;
+    int front, rear, size, capacity;
 
-class MyQueue {
-  private:
-    int arr[100005];
-    int front;
-    int rear;
-
-  public:
-    MyQueue() {
+    // Constructor
+    myQueue(int n) {
+        capacity = n;
+        arr = new int[n];
         front = 0;
-        rear = 0;
+        rear = -1;
+        size = 0;
     }
 
-    void push(int);
-    int pop();
-};
-
-int main() {
-    int T;
-    cin >> T;
-    while (T--) {
-        MyQueue *sq = new MyQueue();
-
-        int Q;
-        cin >> Q;
-        while (Q--) {
-            int QueryType = 0;
-            cin >> QueryType;
-            if (QueryType == 1) {
-                int a;
-                cin >> a;
-                sq->push(a);
-            } else if (QueryType == 2) {
-                cout << sq->pop() << " ";
-            }
-        }
-        cout << endl;
-
-        cout << "~"
-             << "\n";
+    // Check if queue is empty
+    bool isEmpty() {
+        return (size == 0);
     }
-}
 
-// } Driver Code Ends
-
-
-/*
-
-The structure of the class is
-class MyQueue {
-private:
-    int arr[100005];
-    int front;
-    int rear;
-
-public :
-    MyQueue(){front=0;rear=0;}
-    void push(int);
-    int pop();
-};
- */
-
-// Function to push an element x in a queue.
-void MyQueue ::push(int x) {
-    if(rear==100005){
-        cout<<"Queue is overflow ";
-        
+    // Check if queue is full
+    bool isFull() {
+        return (size == capacity);
     }
-    else{
+
+    // Add an element at the rear
+    void enqueue(int x) {
+        if (isFull()) return; // can't enqueue
+        rear = (rear + 1) % capacity;
         arr[rear] = x;
-        rear++;
+        size++;
     }
-    
-    // Your Code
-}
 
-// Function to pop an element from queue and return that element.
-int MyQueue ::pop() {
-    if(front==rear){
-        return -1;
+    // Remove the front element
+    void dequeue() {
+        if (isEmpty()) return; // can't dequeue
+        front = (front + 1) % capacity;
+        size--;
     }
-    else{
-        int res = arr[front];
-        front++;
-        return res;
+
+    // Return front element
+    int getFront() {
+        if (isEmpty()) return -1;
+        return arr[front];
     }
-    // Your Code
-}
+
+    // Return rear element
+    int getRear() {
+        if (isEmpty()) return -1;
+        return arr[rear];
+    }
+};
