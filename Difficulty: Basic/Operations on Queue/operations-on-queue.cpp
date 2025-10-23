@@ -1,49 +1,44 @@
-class myQueue {
-    deque<int>dq;
-    // define your queue
+// User function Template for C++
+
+class Solution {
   public:
-    void enqueue(int x) {
-        dq.push_back(x);
-        // insert x into queue
+
+    // Function to push an element in queue.
+    void enqueue(queue<int> &q, int x) {
+        q.push(x);
+        // Your code here
+        
     }
 
-    void dequeue() {
-        if(dq.empty()){
-            cout<<"deque is empty";
+    // Function to remove front element from queue.
+    void dequeue(queue<int> &q) {
+        if(!q.empty()){
+            q.pop();
         }
-        else{
-            dq.pop_front();
-        }
-        // remove front element from queue
+        
+        // Your code here
     }
 
-    int getFront() {
-        if(!dq.empty()){
-            return dq.front();
+    // Function to find the front element of queue.
+        
+    int front(queue<int> &q) {
+        if(!q.empty()){
+            return q.front();
         }
-        else{
-            return -1;
-        }
-        // return the front element of the queue
+        return -1;
+        // Your code here
     }
 
-    int getRear() {
-        if(!dq.empty()){
-            return dq.back();
+        
+    // Function to find an element in the queue.
+    bool find(queue<int> q, int y) {
+        while(!q.empty()){
+            if(q.front() == y){
+                return true;
+            }
+            q.pop();
         }
-        else{
-            return -1;
-        }
-        // return the rear element of the queue
-    }
-
-    bool isEmpty() {
-        return dq.empty();
-        // check whether queue is empty
-    }
-
-    int size() {
-        return dq.size();
-        // return size of the queue
+        return false;
+        // Your code here
     }
 };
