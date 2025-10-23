@@ -1,22 +1,23 @@
-// User function Template for C++
-
-// User function Template for C++
-
-queue<int> _push(vector<int> &arr) {
-    queue<int>q;
-    for(int i: arr){
-        q.push(i);
-    }
-    return q;
-    
-    // return a queue with all elements of arr inserted in it
-}
-
-void _pop(queue<int> &q) {
-    while(!q.empty()){
-        cout<<q.front()<<" ";
-        q.pop();
+class Solution {
+  public:
+    queue<int> fillQ(const vector<int>& arr) {
+        queue<int>q;
+        for(int i:arr){
+            q.push(i);
+        }
+        return q;
+        // code here
+        
     }
 
-    // print front and dequeue for each element until it becomes empty
-}
+    void emptyQ(queue<int>& q) {
+        while(!q.empty()){
+            cout<<q.front()<<" ";
+            q.pop();
+        }
+        cout<<endl;
+
+        
+        // code here
+    }
+};
