@@ -1,0 +1,14 @@
+<h2><a href="https://www.geeksforgeeks.org/problems/card-rotation5834/1?page=2&category=Queue&sortBy=difficulty">Card Rotation</a></h2><h3>Difficulty Level : Difficulty: Medium</h3><hr><div class="problems_problem_content__Xm_eO"><p><span style="font-size: 14pt;">Given a sorted deck of cards numbered <strong>1 to n.</strong><br><strong>1)</strong> We <strong>pick up 1 card</strong> and put it on the back of the deck.<br><strong>2)</strong> Now, we<strong> pick up another card</strong>, it turns out to be card number 1, we put it outside the deck.<br><strong>3) </strong>Now we <strong>pick up 2 cards </strong>and put it on the back of the deck.<br><strong>4)</strong> Now, we <strong>pick up another card</strong> and it turns out to be card number 2, we put it outside the deck.</span></p>
+<p><span style="font-size: 14pt;">We perform this step until the last card.<br>If such an arrangement of decks is possible, output the arrangement, if it is not possible for a particular value of n then output -1.</span></p>
+<p><span style="font-size: 14pt;"><strong>Examples:</strong></span></p>
+<pre><span style="font-size: 14pt;"><strong>Input</strong>: n = 4
+<strong>Output: </strong>[2, 1, 4, 3]
+<strong>Explanation</strong>:
+We initially have [2, 1, 4, 3]
+Step1, we move the first card to the end. Deck now is: [1, 4, 3, 2]
+Step2, we get 1. Hence we remove it. Deck now is: [4, 3, 2]
+Step3, we move the 2 front cards one by one to the end  ([4, 3, 2] -&gt; [3, 2, 4] -&gt; [2, 4, 3]) Deck now is: [2, 4, 3].
+Step4, we get 2. Hence we remove it. Deck now is: [4, 3]
+Step5, the following sequence follows: [4, 3] -&gt; [3, 4] -&gt; [4, 3] -&gt; [3, 4]. Deck now is: [3, 4] </span><br><span style="font-size: 14pt;">Step6, we get 3. Hence we remove it. Deck now is: [4] Finally, we're left with a single card and thus, we stop. </span></pre>
+<pre><span style="font-size: 14pt;"><strong>Input : </strong>n = 3<strong><br>Output:</strong> [3, 1, 2]<strong><br>Explanation:<br></strong>We intially have [3, 1, 2]<br>Step1, we move the first card to the end .Deck now is : [1, 2, 3]<br>Step2, we get 1.Hence we remove it .Deck now is : [2,3]<br>Step3, we move the 2 front card on e by one to the end ([2,3] -&gt; [3,2] -&gt; [2,3]) Deck now is : [2, 3].<br>Step4, we get 2 .Hence we remove it. Deck now is : [3] Finally, we're left with single card and thus ,we stop .</span></pre>
+<p><span style="font-size: 14pt;"><strong><br>Constraints:</strong><br>1 ≤ n ≤ 1000</span></p></div><br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>permutation</code>&nbsp;<code>Combinatorial</code>&nbsp;<code>Queue</code>&nbsp;<code>Data Structures</code>&nbsp;
