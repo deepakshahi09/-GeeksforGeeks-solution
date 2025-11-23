@@ -5,15 +5,17 @@ class Solution {
         if(a.size() != b.size()){
             return false;
         }
-        unordered_map<int, int>set;
+        unordered_map<int, int>map;
         for(int i: a){
-            set[i]++;
+            map[i]++;
         }
-        for(int i: b){
-            if(set.find(i) == set.end() || set[i]==0){
+        
+        for(int i : b){
+            if(map.find(i) == map.end() || map[i] == 0){
                 return false;
             }
-            set[i]--;
+        map[i]--;
+            
         }
         return true;
     }
