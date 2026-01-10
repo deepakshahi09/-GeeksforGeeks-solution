@@ -9,7 +9,7 @@ public:
         int level = 0;
         int ansLevel = 0;
         int maxNodes = 0;
-
+        
         while (!q.empty()) {
             int sz = q.size();
 
