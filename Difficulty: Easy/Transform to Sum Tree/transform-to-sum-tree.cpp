@@ -1,3 +1,5 @@
+// User function template for C++
+
 /* A binary tree node
 struct Node
 {
@@ -7,16 +9,16 @@ struct Node
 
 class Solution {
   public:
-  int solve(Node* root){
+    int solve(Node* root){
         if(root == NULL){
             return 0;
         }
-        int leftSum = solve(root->left);
-        int rightSum = solve(root->right);
+        int ls = solve(root->left);
+        int rs = solve(root->right);
         
-        int oldval = root->data;
-        root->data = leftSum + rightSum;
-        return root->data + oldval;
+        int old = root->data;
+        root->data = ls+rs;
+        return old + ls + rs;
     }
 
     // Convert a given tree to a tree where every node contains sum of values of
