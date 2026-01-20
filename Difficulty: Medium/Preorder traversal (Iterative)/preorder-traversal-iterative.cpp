@@ -13,19 +13,22 @@ class Node {
 */
 class Solution {
   public:
-    void solve(Node* root, vector<int>&ans){
-        if(root == NULL){
-            return;
-        }
-        ans.push_back(root->data);
-        solve(root->left,ans);
-        solve(root->right,ans);
-    }
     vector<int> preOrder(Node* root) {
-        vector<int>ans;
-        solve(root,ans);
-        return ans;
         // code here
-        
+        stack<Node*>st;
+        st.push(root);
+        vector<int>ans;
+        while(!st.empty()){
+            Node* temp = st.top();
+            st.pop();
+            ans.push_back(temp->data);
+            if(temp->right){
+                st.push(temp->right);
+            }
+            if(temp->left){
+                st.push(temp->left);
+            }
+        }
+        return ans;
     }
 };
