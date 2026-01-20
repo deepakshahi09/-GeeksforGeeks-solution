@@ -1,17 +1,21 @@
 class Solution {
   public:
-    
-    void findRange(Node* root, int hd, int &l, int &r) {
+
+    void found(Node* root, int pos, int &l, int &r) {
         if (!root) return;
-        l = min(l, hd);
-        r = max(r, hd);
-        findRange(root->left, hd - 1, l, r);
-        findRange(root->right, hd + 1, l, r);
+
+        l = min(l, pos);
+        r = max(r, pos);
+
+        found(root->left, pos - 1, l, r);
+        found(root->right, pos + 1, l, r);
     }
 
     vector<int> topView(Node *root) {
+        if (!root) return {};
+
         int l = 0, r = 0;
-        findRange(root, 0, l, r);
+        found(root, 0, l, r);
 
         vector<int> ans(r - l + 1);
         vector<bool> filled(r - l + 1, false);
@@ -20,24 +24,27 @@ class Solution {
         queue<int> index;
 
         q.push(root);
-        index.push(-l);   // shift index
+        index.push(-l);   // correct shift
 
         while (!q.empty()) {
-            Node* temp = q.front(); q.pop();
-            int pos = index.front(); index.pop();
+            Node* front = q.front();
+            q.pop();
+
+            int pos = index.front();
+            index.pop();
 
             if (!filled[pos]) {
                 filled[pos] = true;
-                ans[pos] = temp->data;
+                ans[pos] = front->data;
             }
 
-            if (temp->left) {
-                q.push(temp->left);
+            if (front->left) {
+                q.push(front->left);
                 index.push(pos - 1);
             }
 
-            if (temp->right) {
-                q.push(temp->right);
+            if (front->right) {
+                q.push(front->right);
                 index.push(pos + 1);
             }
         }
