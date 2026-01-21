@@ -2,16 +2,16 @@ class Solution {
   public:
     int postIndex;
 
-    Node* solve(vector<int> &inorder, vector<int> &postorder, int start, int end) {
-        if (start > end)
+    Node* solve(vector<int>& inorder, vector<int>& postorder, int st, int lst) {
+        if (st > lst)
             return NULL;
 
         // Create root from postorder
         Node* root = new Node(postorder[postIndex--]);
 
-        // Find root position in inorder
+        // Find root in inorder
         int pos;
-        for (int i = start; i <= end; i++) {
+        for (int i = st; i <= lst; i++) {
             if (inorder[i] == root->data) {
                 pos = i;
                 break;
@@ -19,8 +19,8 @@ class Solution {
         }
 
         // Build right first, then left
-        root->right = solve(inorder, postorder, pos + 1, end);
-        root->left  = solve(inorder, postorder, start, pos - 1);
+        root->right = solve(inorder, postorder, pos + 1, lst);
+        root->left  = solve(inorder, postorder, st, pos - 1);
 
         return root;
     }
