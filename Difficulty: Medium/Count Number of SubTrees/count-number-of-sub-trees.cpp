@@ -13,22 +13,21 @@ class Node {
 */
 class Solution {
   public:
-    int solve(Node* root, int x, int &count){
+    int solve(Node* root, int &count, int x){
         if(root == NULL){
             return 0;
         }
-        int leftSum = solve(root->left,x,count);
-        int rightSum = solve(root->right,x,count);
-        
-        int totalsum = leftSum+rightSum+root->data;
-        if(totalsum == x){
+        int left = solve(root->left,count,x);
+        int right = solve(root->right,count,x);
+        int total = left+right+root->data;
+        if(total == x){
             count++;
         }
-        return totalsum;
+        return total;
     }
     int countSubtrees(Node* root, int x) {
         int count = 0;
-        solve(root,x,count);
+        solve(root,count,x);
         return count;
         // code here
         
