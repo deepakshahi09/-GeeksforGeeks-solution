@@ -9,7 +9,6 @@ struct Node
 
 class Solution {
   public:
-  
 
     /*You are required to complete below function */
     int kthCommonAncestor(Node *root, int k, int x, int y) {
@@ -17,7 +16,7 @@ class Solution {
         Node* curr = root;
         while(curr){
             path.push_back(curr->data);
-            if(x < curr->data && y< curr->data){
+            if(x< curr->data && y < curr->data){
                 curr = curr->left;
             }
             else if(x > curr->data && y > curr->data){
@@ -27,11 +26,12 @@ class Solution {
                 break;
             }
         }
-        int idx = path.size()-k;
-        if(idx < 0){
+        int index = path.size()-k;
+        if(index < 0){
             return -1;
         }
-        return path[idx];
+        return path[index];
+        
         // your code goes here
     }
 };
