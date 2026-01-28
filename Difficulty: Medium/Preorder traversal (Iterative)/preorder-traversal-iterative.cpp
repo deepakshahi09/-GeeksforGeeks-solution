@@ -16,17 +16,18 @@ class Solution {
     vector<int> preOrder(Node* root) {
         // code here
         stack<Node*>st;
-        st.push(root);
         vector<int>ans;
+        st.push(root);
         while(!st.empty()){
-            Node* temp = st.top();
+            Node* curr = st.top();
             st.pop();
-            ans.push_back(temp->data);
-            if(temp->right){
-                st.push(temp->right);
+            ans.push_back(curr->data);
+            
+            if(curr->right){
+                st.push(curr->right);
             }
-            if(temp->left){
-                st.push(temp->left);
+            if(curr->left){
+                st.push(curr->left);
             }
         }
         return ans;
