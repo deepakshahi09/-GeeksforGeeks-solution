@@ -8,8 +8,9 @@ struct Node
 class Solution {
   public:
     vector<int> diagonal(Node *root) {
-        vector<int>ans;
+        // code here
         queue<Node*>q;
+        vector<int>ans;
         q.push(root);
         while(!q.empty()){
             Node* front = q.front();
@@ -23,7 +24,5 @@ class Solution {
             }
         }
         return ans;
-        // code here
-        
     }
 };
