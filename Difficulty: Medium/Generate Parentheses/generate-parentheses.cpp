@@ -1,25 +1,27 @@
-class Solution {
-public:
-    vector<string> ans;
+// User function Template for C++
 
-    void solve(int open, int close, int n, string curr) {
-        if (curr.size() == n) {
+// N is the number of pairs of parentheses
+// Return list of all combinations of balanced parantheses
+class Solution {
+  public:
+    vector<string>ans;
+    void solve(int op, int cl, int n, string curr){
+        if(curr.size() == n){
             ans.push_back(curr);
             return;
         }
-
-        if (open < n / 2) {
-            solve(open + 1, close, n, curr + "(");
+        if(op < n/2){
+            solve(op+1,cl,n,curr+"(");
         }
-
-        if (close < open) {
-            solve(open, close + 1, n, curr + ")");
+        if(cl < op){
+            solve(op, cl+1, n, curr+ ")");
         }
     }
-
     vector<string> generateParentheses(int n) {
+        // code here
         ans.clear();
-        solve(0, 0, n, "");
+        solve(0,0,n,"");
         return ans;
+        
     }
 };
