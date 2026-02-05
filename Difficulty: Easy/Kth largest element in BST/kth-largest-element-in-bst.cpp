@@ -22,6 +22,7 @@ class Solution {
         k--;
         if(k == 0){
             ans = root->data;
+            return;
         }
         solve(root->left,k,ans);
         
