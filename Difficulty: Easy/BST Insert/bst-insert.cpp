@@ -15,15 +15,28 @@ public:
 class Solution {
   public:
     Node* insert(Node* root, int key) {
-        Node* newNode = new Node(key);
+        Node * newnode = new Node(key);
         if(!root){
-            return newNode;
+            return newnode;
         }
-        if(root->data > key){
-            root->left = insert(root->left,key);
+        Node* curr = root;
+        while(curr){
+            if(curr->data < key && curr->right){
+                curr = curr->right;
+            }
+            else if(curr->data > key && curr->left){
+                curr = curr->left;
+            }
+            else{
+                break;
+            }
+        }
+        if(curr->data < key){
+            curr->right = newnode;
+            
         }
         else{
-            root->right = insert(root->right, key);
+            curr->left = newnode;
         }
         return root;
         //  code  here
