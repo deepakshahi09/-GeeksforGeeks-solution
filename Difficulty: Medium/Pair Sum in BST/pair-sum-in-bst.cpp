@@ -1,20 +1,5 @@
-/*
-Node is as follows
-class Node {
-    int data;
-    Node *left;
-    Node *right;
-
-    Node(int val) {
-        data = val;
-        left = right = NULL;
-    }
-};
-*/
-
-class Solution {
-  public:
-    void solve(Node* root,vector<int>&ans){
+// Function to check if any pair exists in BST whose sum is equal to given value.
+void solve(Node* root,vector<int>&ans){
         if(!root){
             return;
         }
@@ -23,17 +8,18 @@ class Solution {
         solve(root->right,ans);
         
     }
-    bool findTarget(Node *root, int target) {
-        vector<int>v;
+bool findPair(Node* root, int X) {
+    // Your code here
+    vector<int>v;
         solve(root,v);
         int i = 0;
         int j = v.size()-1;
         while(i<j){
             int sum = v[i]+v[j];
-            if(sum == target){
+            if(sum == X){
                 return true;
             }
-            else if(sum  < target){
+            else if(sum  < X){
                 i++;
             }
             else{
@@ -41,7 +27,5 @@ class Solution {
             }
         }
         return false;
-        
-        // your code here.
-    }
-};
+    
+}
