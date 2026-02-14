@@ -1,20 +1,25 @@
 class Solution {
   public:
+    int kn(vector<int>&wt, vector<int>&val, vector<vector<int>>&dp, int n, int w){
+        if(n == 0 || w == 0){
+            return 0;
+        }
+        if(dp[n][w] != -1){
+            return dp[n][w];
+        }
+        if(wt[n-1] <= w){
+            return dp[n][w] = max(val[n-1] + kn(wt,val,dp,n-1,w-wt[n-1]) , kn(wt,val,dp,n-1,w));
+        }
+        else{
+            return dp[n][w] = kn(wt,val,dp,n-1,w);
+        }
+    }
     int knapsack(int W, vector<int> &val, vector<int> &wt) {
         // code here
         int n = val.size();
-        vector<vector<int>>dp(n+1,vector<int>(W+1,0));
+        vector<vector<int>>dp(n+1,vector<int>(W+1,-1));
+        return kn(wt,val,dp,n,W);
+       
         
-        for(int i=1;i<=n;i++){
-            for(int w = 1;w<=W;w++){
-                if(wt[i-1] <= w){
-                    dp[i][w] = max(dp[i-1][w],val[i-1]+dp[i-1][w-wt[i-1]]);
-                }
-                else{
-                    dp[i][w] = dp[i-1][w];
-                }
-            }
-        }
-        return dp[n][W];
     }
 };
