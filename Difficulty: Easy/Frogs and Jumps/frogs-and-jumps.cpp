@@ -5,28 +5,25 @@ class Solution {
     int unvisitedLeaves(int N, int leaves, int frogs[]) {
         // Code here
         vector<bool>visit(leaves+1,false);
-        vector<bool>usejump(leaves+1,false);
-        for(int i = 0;i<N;i++){
+        vector<bool>use(leaves+1,false);
+        for(int i=0;i<N;i++){
             int jump = frogs[i];
-            
-            if(jump > leaves || usejump[jump]){
+            if(jump > leaves || use[jump]){
                 continue;
             }
             else{
-                usejump[jump] = true;
+                use[jump] = true;
             }
-            
-            for(int j = jump;j<=leaves; j+=jump){
-                visit[j] = true;
+            for(int i=jump;i<=leaves;i+=jump){
+                visit[i] = true;
             }
         }
-        int count = 0;
+        int c = 0;
         for(int i=1;i<=leaves;i++){
             if(!visit[i]){
-                count++;
+                c++;
             }
         }
-        return count;
-        
+        return c;
     }
 };
