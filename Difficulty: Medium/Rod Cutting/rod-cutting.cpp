@@ -2,15 +2,32 @@ class Solution {
   public:
     int cutRod(vector<int> &price) {
         int n = price.size();
-        vector<int> dp(n + 1, 0);
-        
-        // dp[i] = maximum value obtainable from rod of length i
-        for(int i = 1; i <= n; i++){
-            for(int j = 1; j <= i; j++){
-                dp[i] = max(dp[i], price[j - 1] + dp[i - j]);
+    
+    // lengths array (1,2,3,...,n)
+    vector<int> length(n);
+    for(int i = 0; i < n; i++) {
+        length[i] = i + 1;
+    }
+
+    // DP table
+    vector<vector<int>> dp(n + 1, vector<int>(n + 1, 0));
+
+    // Fill DP table
+    for(int i = 1; i <= n; i++) {
+        for(int j = 1; j <= n; j++) {
+
+            if(length[i - 1] <= j) {
+                dp[i][j] = max(
+                                price[i - 1] + dp[i][j - length[i - 1]],  // include (same row)
+                                dp[i - 1][j]                               // exclude
+                              );
+            }
+            else {
+                dp[i][j] = dp[i - 1][j];
             }
         }
-        
-        return dp[n];
+    }
+
+    return dp[n][n];
     }
 };
