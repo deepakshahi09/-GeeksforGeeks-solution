@@ -1,15 +1,15 @@
 class Solution {
   public:
-    bool dfs(int node, int parent,vector<vector<int>>&edge,vector<bool>&visit){
+    bool dfs(int node, int parent, vector<bool>&visit,vector<vector<int>>&adj){
         visit[node] = true;
-        for(int neigh : edge[node]){
-            if(!visit[neigh]){
-                if(dfs(neigh,node,edge,visit)){
+        for(int x : adj[node]){
+            if(!visit[x]){
+                if(dfs(x,node,visit,adj)){
                     return true;
                 }
             }
-            else if(neigh != parent){
-                    return true;
+            else if(x != parent){
+                return true;
             }
         }
         return false;
@@ -24,9 +24,9 @@ class Solution {
             adj[v].push_back(u);
         }
         vector<bool>visit(V,false);
-        for(int i=0;i<edges.size();i++){
+        for(int i=0;i<V;i++){
             if(!visit[i]){
-                if(dfs(i,-1,adj,visit)){
+                if(dfs(i,-1,visit,adj)){
                     return true;
                 }
             }
