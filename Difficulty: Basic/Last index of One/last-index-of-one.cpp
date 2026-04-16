@@ -1,0 +1,13 @@
+class Solution {
+  public:
+    int lastIndex(string s) {
+        int i = s.size()-1;
+        while(i >= 0){
+            if(s[i] == '1'){
+                return i;
+            }
+            i--;
+        }
+        return -1;
+    }
+};
