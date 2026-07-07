@@ -1,78 +1,58 @@
 class Solution {
-public:
+  public:
     vector<vector<string>> findSequences(vector<string> &words, string &s, string &e) {
-
-        unordered_set<string> st(words.begin(), words.end());
-
-        vector<vector<string>> ans;
-
-        queue<vector<string>> q;
-
-        // Start path
-        q.push({s});
-
-        vector<string> usedOnLevel;
-        usedOnLevel.push_back(s);
-
-        int level = 1;
-
-        while (!q.empty()) {
-
-            vector<string> path = q.front();
-            q.pop();
-
-            // New BFS level reached
-            if (path.size() > level) {
-
-                level = path.size();
-
-                // Remove words used in previous level
-                for (auto word : usedOnLevel) {
-                    st.erase(word);
+            vector<vector<string>>ans;
+            queue<vector<string>>q;
+            vector<string>useOflevel;
+            int level = 0;
+            useOflevel.push_back(s);
+            q.push({s});
+            unordered_set<string>st(words.begin(),words.end());
+            
+            while(!q.empty()){
+                vector<string>res = q.front();
+                q.pop();
+                
+                
+                if(res.size() > level){
+                    level = res.size();
+                    for(string s : useOflevel){
+                        st.erase(s);
+                    }
+                    useOflevel.clear();
                 }
-
-                usedOnLevel.clear();
-            }
-
-            string word = path.back();
-
-            // Destination reached
-            if (word == e) {
-
-                if (ans.empty()) {
-                    ans.push_back(path);
-                }
-                else if (ans[0].size() == path.size()) {
-                    ans.push_back(path);
-                }
-
-                continue;
-            }
-
-            // Generate all possible neighbours
-            for (int i = 0; i < word.size(); i++) {
-
-                char original = word[i];
-
-                for (char ch = 'a'; ch <= 'z'; ch++) {
-
-                    word[i] = ch;
-
-                    if (st.count(word)) {
-
-                        path.push_back(word);
-                        q.push(path);
-
-                        usedOnLevel.push_back(word);
-
-                        path.pop_back();
+                
+                
+                string word = res.back();
+                
+                if(word == e){
+                    if(ans.size() == 0){
+                        ans.push_back(res);
+                    }
+                    else if(ans[0].size() == res.size()){
+                        ans.push_back(res);
                     }
                 }
-
-                word[i] = original;
+                
+                for(int i=0;i<word.size();i++){
+                    char original = word[i];
+                    for(char j='a';j<='z';j++){
+                        word[i] = j;
+                        if(st.count(word) > 0){
+                            useOflevel.push_back(word);
+                            res.push_back(word);
+                            q.push(res);
+                            res.pop_back();
+                        }
+                        
+                    }
+                    word[i]= original;
+                }
+                
+                
+                
             }
-        }
-
-        return ans;
+            return ans;
+        
     }
 };
