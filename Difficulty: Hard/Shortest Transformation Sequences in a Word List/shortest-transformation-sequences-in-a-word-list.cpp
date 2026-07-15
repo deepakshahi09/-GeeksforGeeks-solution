@@ -1,52 +1,72 @@
 class Solution {
-  public:
+public:
     vector<vector<string>> findSequences(vector<string> &words, string &s, string &e) {
-      
-        vector<vector<string>>ans;
-        vector<string>levelofview;
-        unordered_set<string>st(words.begin(),words.end());
-        queue<vector<string>>q;
+
+        unordered_set<string> st(words.begin(), words.end());
+
+        queue<vector<string>> q;
         q.push({s});
-        levelofview.push_back(s);
-        int level = 0;
-        
-        
-        while(!q.empty()){
-            vector<string>res = q.front();
+
+        vector<string> usedOnLevel;
+        usedOnLevel.push_back(s);
+
+        int level = 1;
+
+        vector<vector<string>> ans;
+
+        while (!q.empty()) {
+
+            vector<string> path = q.front();
             q.pop();
-            
-            if(res.size() > level){
-                level = res.size();
-                for(auto it:levelofview){
-                    st.erase(it);
-                }
-                levelofview.clear();
+
+            // New BFS level
+            if (path.size() > level) {
+                level = path.size();
+
+                for (auto &word : usedOnLevel)
+                    st.erase(word);
+
+                usedOnLevel.clear();
+
+                // Stop after shortest paths are found
+                if (!ans.empty() && path.size() > ans[0].size())
+                    break;
             }
-            
-            string word = res.back();
-            if(word == e){
-                if(ans.size() == 0){
-                    ans.push_back(res);
-                }
-                else if(ans[0].size() == res.size()){
-                    ans.push_back(res);
-                }
+
+            string word = path.back();
+
+            if (word == e) {
+                if (ans.empty())
+                    ans.push_back(path);
+                else if (ans[0].size() == path.size())
+                    ans.push_back(path);
+
+                continue;
             }
-            for(int i=0;i<word.size();i++){
+
+            for (int i = 0; i < word.size(); i++) {
+
                 char original = word[i];
-                for(char ch = 'a';ch<='z';ch++){
+
+                for (char ch = 'a'; ch <= 'z'; ch++) {
+
+                    if (ch == original)
+                        continue;
+
                     word[i] = ch;
-                    if(st.count(word)>0){
-                        levelofview.push_back(word);
-                        res.push_back(word);
-                        q.push(res);
-                        res.pop_back();
+
+                    if (st.count(word)) {
+                        path.push_back(word);
+                        q.push(path);
+                        usedOnLevel.push_back(word);
+                        path.pop_back();
                     }
                 }
+
                 word[i] = original;
             }
         }
+
         return ans;
-        
     }
 };
