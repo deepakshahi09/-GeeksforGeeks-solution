@@ -10,14 +10,6 @@ class Solution {
 		st.push(node);
 		
 	}
-	void dfs1(int node, vector<int>adj[], vector<int>&visit) {
-		visit[node] = 1;
-		for (int &it : adj[node]) {
-			if (!visit[it]) {
-				dfs1(it, adj, visit);
-			}
-		}
-	}
 	public:
 	int kosaraju(int V, vector<vector<int>> &edges) {
 		vector<int>adj[V];
@@ -44,12 +36,13 @@ class Solution {
 			visit[i] = 0;
 		}
 		int count = 0;
+		stack<int>stt;
 		while (!st.empty()) {
 			int node = st.top();
 			st.pop();
 			if (!visit[node]) {
 				count++;
-				dfs1(node, adjT, visit);
+				dfs(node, adjT,stt, visit);
 			}
 		}
 		return count;
