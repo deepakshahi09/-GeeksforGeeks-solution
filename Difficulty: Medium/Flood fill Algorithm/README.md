@@ -8,4 +8,4 @@
 <div><span style="font-size: 14pt;"><strong>Constraints:</strong><br>1 ≤ n ≤ m ≤ 500<br>0 ≤ image[i][j] ≤ 10</span></div>
 <div><span style="font-size: 14pt;">0 ≤ newColor ≤ 10</span></div>
 <div><span style="font-size: 14pt;">0 ≤ sr ≤ (n-1)</span></div>
-<div><span style="font-size: 14pt;">0 ≤ sc ≤ (m-1)</span></div></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Microsoft</code>&nbsp;<code>Google</code>&nbsp;<code>NPCI</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Recursion</code>&nbsp;<code>DFS</code>&nbsp;<code>Matrix</code>&nbsp;<code>Graph</code>&nbsp;<code>Data Structures</code>&nbsp;<code>Algorithms</code>&nbsp;
+<div><span style="font-size: 14pt;">0 ≤ sc ≤ (m-1)</span></div></div><p><span style=font-size:18px><strong>Company Tags : </strong><br><code>Microsoft</code>&nbsp;<code>Google</code>&nbsp;<code>NPCI</code>&nbsp;<br><p><span style=font-size:18px><strong>Topic Tags : </strong><br><code>Recursion</code>&nbsp;<code>DFS</code>&nbsp;<code>Matrix</code>&nbsp;<code>Graph</code>&nbsp;
